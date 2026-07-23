@@ -1,0 +1,67 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Reverse Software Search API",
+    "description": "AI software synthesis engine that generates full engineering blueprints from natural language prompts.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root Status",
+        "responses": {
+          "200": { "description": "Successful Response" }
+        }
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "summary": "Telemetry & System Health",
+        "responses": {
+          "200": { "description": "Returns uptime and metrics" }
+        }
+      }
+    },
+    "/api/v1/synthesize": {
+      "post": {
+        "summary": "Synthesize Product Blueprint",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": { "type": "string" }
+                },
+                "required": ["prompt"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Synthesized blueprint specifications" }
+        }
+      }
+    },
+    "/api/v1/blueprints": {
+      "get": {
+        "summary": "List Previous Blueprints",
+        "responses": {
+          "200": { "description": "Array of past blueprints" }
+        }
+      }
+    },
+    "/api/v1/blueprints/{blueprint_id}/multi-agent-review": {
+      "get": {
+        "summary": "Get Multi-Agent Review Assessment",
+        "parameters": [
+          { "name": "blueprint_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Multi-agent review object" }
+        }
+      }
+    }
+  }
+}
