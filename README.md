@@ -1,8 +1,8 @@
 # 🔍 Reverse Software Search (RSS)
 
-> **Translate natural language product concepts into complete engineering blueprints, capabilities graphs, database designs, architecture diagrams, and download-ready starter repositories.**
+> **Translate natural language product concepts into complete engineering blueprints, capabilities graphs, multi-agent AI reviews, database designs, architecture diagrams, live sandbox execution previews, and download-ready starter repositories.**
 
-Reverse Software Search (RSS) is an AI-powered software synthesis engine. By entering high-level, hybrid prompts (such as *"I want Discord for hospitals"* or *"I want Notion but offline"*), RSS reverse-engineers the "genetic components" of leading software platforms, synthesizes custom engineering specifications across 17 distinct design dimensions, and produces a complete, deployable boilerplate package ready for download.
+Reverse Software Search (RSS) is a next-generation AI software synthesis platform. By entering natural language prompts (or picking pre-loaded creative concepts like *"ZeroCost AI SaaS Architect"* or *"I want Discord for hospitals"*), RSS reverse-engineers software genetics, synthesizes custom engineering specifications across 18 distinct design dimensions, runs a simulated Multi-Agent Engineering Council review, and outputs a complete, deployable boilerplate package ready for download and sandbox execution.
 
 ---
 
@@ -11,15 +11,27 @@ Reverse Software Search (RSS) is an AI-powered software synthesis engine. By ent
 RSS leverages a modular multi-engine pipeline to generate a comprehensive architectural blueprint:
 
 1. **Software Genome Matching**: Maps your prompt against pre-seeded profiles of industry giants (**Notion**, **GitHub**, **Canva**, **Discord**, **Slack**, **VSCode**) to copy their structural patterns, tech stacks, and schemas.
-2. **Dynamic Capability Graphs**: Uses `NetworkX` on the backend and `@xyflow/react` (React Flow) on the frontend to render interactive service meshes, data flows, and module dependencies.
-3. **Database Designer**: Synthesizes custom entity-relationship attributes and outputs complete PostgreSQL/SQLite DDL schemas.
-4. **API Specification Generator**: Generates clean, RESTful OpenAPI/Swagger endpoints and WebSocket routes.
-5. **Interactive UI Layouts**: Maps client routes, core layouts, and custom UI elements.
-6. **User Journey & Workflows**: Generates sequence diagrams and user interaction maps.
-7. **Infrastructure & LLM Cost Calculator**: Estimates monthly AWS/GCP cloud hosting and LLM token costs.
-8. **OSS Replacement Recommendations**: Recommends open-source, self-hosted alternatives to replace proprietary elements.
-9. **Startup Generator**: Produces complete pricing tiers, Go-To-Market (GTM) strategies, SWOT analysis, and pitch deck structures.
-10. **Codebase Repository Synthesizer**: Compiles and outputs complete Next.js, FastAPI, Docker, and environment files in real-time, packaged inside a downloadable `.zip` archive.
+2. **🛡️ Multi-Agent Engineering Council**: Evaluates every synthesized blueprint using 4 specialized AI personas (*Principal System Architect*, *FinOps Lead*, *Cybersecurity Officer*, and *UX Strategist*) with overall health scores, severity tags, and copyable code remediation snippets.
+3. **⚡ Live WebContainer Sandbox Execution**: Run and test synthesized starter code files in a virtual Node.js/Python sandbox directly in your browser with interactive terminal execution logs.
+4. **Dynamic Capability Graphs**: Uses `NetworkX` on the backend and `@xyflow/react` (React Flow) on the frontend to render interactive service meshes, data flows, and module dependencies.
+5. **Database Designer**: Synthesizes custom entity-relationship attributes and outputs complete PostgreSQL/SQLite DDL schemas.
+6. **API Specification Generator**: Generates clean, RESTful OpenAPI/Swagger endpoints and WebSocket routes.
+7. **Interactive UI Layouts**: Maps client routes, core layouts, and custom UI elements.
+8. **User Journey & Workflows**: Generates sequence diagrams and user interaction maps.
+9. **Infrastructure & LLM Cost Calculator**: Estimates monthly AWS/GCP cloud hosting and LLM token costs.
+10. **OSS Replacement Recommendations**: Recommends open-source, self-hosted alternatives to replace proprietary elements.
+11. **Startup Generator**: Produces complete pricing tiers, Go-To-Market (GTM) strategies, SWOT analysis, and pitch deck structures.
+12. **Codebase Repository Synthesizer**: Compiles and outputs complete Next.js, FastAPI, Docker, and environment files in real-time, packaged inside a downloadable `.zip` archive.
+
+---
+
+## 💡 Creative Project Templates
+
+RSS comes with preset creative product prompts ready to synthesize:
+* 🛡️ **ZeroCost AI SaaS Architect**: Self-hosted Datadog/Segment alternative with zero cloud overhead.
+* 🌉 **Autonomous API Bridge Generator**: Converts legacy REST endpoints into type-safe GraphQL SDKs.
+* ⚡ **Neural Architecture Simulator**: High-scale traffic simulator testing 100k requests/sec bottlenecks.
+* 🧬 **AI Codebase Genome Scanner**: GitHub repo scanner that identifies security flaws and modernizes code.
 
 ---
 
@@ -34,7 +46,7 @@ RSS leverages a modular multi-engine pipeline to generate a comprehensive archit
 
 ### Frontend
 * **Core Framework**: [Next.js 16](https://nextjs.org/) (App Router), [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
-* **Graph Visualization**: [@xyflow/react](https://reactflow.dev/) (React Flow) for highly custom, interactive node layouts
+* **Graph Visualization**: [@xyflow/react](https://reactflow.dev/) (React Flow) for custom, interactive node layouts
 * **Styling**: TailwindCSS 4 (via `@tailwindcss/postcss`) and vanilla CSS variables
 * **Animations**: [Framer Motion](https://www.framer.com/motion/) for premium micro-interactions and transitions
 * **State Management**: [Zustand](https://github.com/pmndrs/zustand)
@@ -49,7 +61,7 @@ RSS leverages a modular multi-engine pipeline to generate a comprehensive archit
 Reverse Software Search/
 ├── backend/
 │   ├── app/
-│   │   ├── engines/               # The 17 software synthesis sub-engines
+│   │   ├── engines/               # The 18 software synthesis sub-engines
 │   │   │   ├── ai_planner.py      # Plans AI prompt chains and model routing
 │   │   │   ├── api_generator.py   # Generates OpenAPI REST & WebSockets specs
 │   │   │   ├── architecture.py    # Service mesh and system design planner
@@ -59,6 +71,7 @@ Reverse Software Search/
 │   │   │   ├── genome_matcher.py  # Computes software genome similarity matches
 │   │   │   ├── innovation.py      # Analyzes product market gaps and innovation vectors
 │   │   │   ├── intent.py          # Extracted product audience, constraints, scope
+│   │   │   ├── multi_agent_review.py # Multi-Agent Engineering Council assessment
 │   │   │   ├── oss.py             # Maps components to open-source alternatives
 │   │   │   ├── repo_generator.py  # Generates boilerplate code structure
 │   │   │   ├── startup.py         # Startup blueprints (SWOT, pricing, GTM)
@@ -82,10 +95,13 @@ Reverse Software Search/
 │   │   │   └── page.tsx           # Comprehensive RSS interactive UI dashboard
 │   │   └── components/            # Custom UI elements
 │   │       ├── ArchitectureGraph.tsx # React Flow capability canvas renderer
-│   │       └── CodePreview.tsx    # Visual file explorer & editor previewer
+│   │       └── CodePreview.tsx    # Code editor & Live WebContainer Sandbox execution
 │   ├── package.json               # Node.js dependencies
 │   └── tsconfig.json              # TypeScript compilation setup
-└── README.md                      # Project documentation (this file)
+├── .gitignore                     # Git exclusion rules
+├── composer.json                  # PHP/Composer author details
+├── LICENSE                        # MIT License
+└── README.md                      # Project documentation
 ```
 
 ---
@@ -160,16 +176,8 @@ Reverse Software Search/
 
 ---
 
-## 🛡️ Database & Persistent Blueprints
+## 📄 License
 
-When a product concept is synthesized:
-1. The app serializes the complex nested schemas generated by all 17 engines into JSON strings.
-2. It saves the blueprint metadata and full JSON specifications to the local SQLite database (`backend/rss.db`).
-3. The left sidebar displays a **Synthesized History** panel showing previous generation runs, enabling you to reload and inspect past designs without calling the LLM again.
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
 
----
-
-## 📦 Zip Archiving & Code Export
-
-The **Code Preview** tab allows you to inspect the boilerplate files (including layout pages, config settings, Docker configurations, and API controllers) synthesized specifically for your app.
-* Pressing the **Download Starter Repository** button on the UI requests a generated `.zip` archive compiled in memory on the backend by `repo_generator.py` and streams it directly to your browser for immediate download.
+Developed by **Vijay Mahes** (`Vijaypradhap2004@gmail.com`).
