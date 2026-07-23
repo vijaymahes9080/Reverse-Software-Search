@@ -31,6 +31,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from app.services.telemetry import get_telemetry_status, record_synthesis
+
 @app.get("/")
 def read_root():
     return {
@@ -38,6 +40,11 @@ def read_root():
         "app": settings.PROJECT_NAME,
         "version": settings.VERSION
     }
+
+@app.get("/api/v1/health")
+def get_health_status():
+    """Retrieve system health and telemetry metrics."""
+    return get_telemetry_status()
 
 @app.get("/api/v1/genomes")
 def get_genomes():
