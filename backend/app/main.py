@@ -22,7 +22,10 @@ app = FastAPI(
     description="AI software synthesis engine that generates full engineering blueprints from natural language prompts."
 )
 
-# Configure CORS
+from app.services.security import SecurityHeadersMiddleware
+
+# Configure CORS & Security Headers
+app.add_middleware(SecurityHeadersMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], # Allow development frontend
