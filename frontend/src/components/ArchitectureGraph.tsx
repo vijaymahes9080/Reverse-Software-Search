@@ -40,9 +40,9 @@ function CustomNode({ data }: NodeProps) {
       <div className="text-sm font-bold text-gray-100 mb-1">
         {data.label as string}
       </div>
-      {data.description && (
+      {Boolean(data.description) && (
         <p className="text-[10px] text-gray-400 leading-normal max-w-[190px]">
-          {data.description as string}
+          {String(data.description)}
         </p>
       )}
 

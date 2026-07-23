@@ -82,7 +82,8 @@ def run_synthesis(payload: dict, db: Session = Depends(get_db)):
             oss_json=json.dumps(blueprint_data["oss"]),
             innovation_json=json.dumps(blueprint_data["innovations"]),
             startup_json=json.dumps(blueprint_data["startup"]),
-            files_json=json.dumps(blueprint_data["files"])
+            files_json=json.dumps(blueprint_data["files"]),
+            multi_agent_json=json.dumps(blueprint_data.get("multi_agent", {}))
         )
         
         db.add(db_blueprint)
@@ -138,8 +139,17 @@ def get_blueprint(blueprint_id: str, db: Session = Depends(get_db)):
         "oss": json.loads(bp.oss_json),
         "innovations": json.loads(bp.innovation_json),
         "startup": json.loads(bp.startup_json),
-        "files": json.loads(bp.files_json)
+        "files": json.loads(bp.files_json),
+        "multi_agent": json.loads(bp.multi_agent_json) if bp.multi_agent_json else {}
     }
+
+@app.get("/api/v1/blueprints/{blueprint_id}/multi-agent-review")
+def get_multi_agent_review(blueprint_id: str, db: Session = Depends(get_db)):
+    """Retrieve Multi-Agent Engineering Council Assessment for a specific blueprint."""
+    bp = db.query(Blueprint).filter(Blueprint.id == blueprint_id).first()
+    if not bp:
+        raise HTTPException(status_code=404, detail="Blueprint not found")
+    return json.loads(bp.multi_agent_json) if bp.multi_agent_json else {}
 
 @app.get("/api/v1/blueprints/{blueprint_id}/download")
 def download_blueprint_zip(blueprint_id: str, db: Session = Depends(get_db)):
@@ -158,3 +168,4 @@ def download_blueprint_zip(blueprint_id: str, db: Session = Depends(get_db)):
             "Content-Disposition": f"attachment; filename={bp.title.lower().replace(' ', '_')}_starter.zip"
         }
     )
+

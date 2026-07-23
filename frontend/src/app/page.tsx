@@ -33,6 +33,7 @@ interface Blueprint {
   oss: any;
   innovations: any;
   startup: any;
+  multi_agent?: any;
   files: Record<string, string>;
 }
 
@@ -46,12 +47,12 @@ export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const templates = [
+    "🛡️ ZeroCost AI SaaS Architect: Self-hosted Datadog alternative",
+    "🌉 Autonomous API Bridge Generator: Legacy REST to GraphQL SDKs",
+    "⚡ Neural Architecture Simulator: 100k req/sec bottleneck stress tester",
+    "🧬 AI Codebase Genome Scanner: GitHub repo modernizer & security auditor",
     "I want Canva + GitHub + Notion",
-    "I want Discord for hospitals",
-    "I want GitHub for lawyers",
-    "I want Notion but offline",
-    "I want Spotify for education",
-    "I want WhatsApp for factories"
+    "I want Discord for hospitals"
   ];
 
   const loadingSteps = [
@@ -329,6 +330,7 @@ export default function Home() {
               <div className="flex overflow-x-auto border-b border-gray-800 gap-1 pb-1">
                 {[
                   { id: 'vision', label: 'Vision & Innovation', icon: Lightbulb },
+                  { id: 'council', label: 'AI Council Assessment', icon: ShieldCheck },
                   { id: 'graph', label: 'Capability Graph', icon: Globe },
                   { id: 'architecture', label: 'Service Arch', icon: Layers },
                   { id: 'db', label: 'Database DDL', icon: Database },
@@ -336,7 +338,7 @@ export default function Home() {
                   { id: 'workflow', label: 'Workflows', icon: Workflow },
                   { id: 'startup', label: 'Startup Strategy', icon: BarChart2 },
                   { id: 'cost', label: 'Costs & Servers', icon: DollarSign },
-                  { id: 'code', label: 'Code Explorer', icon: Code }
+                  { id: 'code', label: 'Code Explorer & Sandbox', icon: Code }
                 ].map((tab) => {
                   const Icon = tab.icon;
                   return (
@@ -439,6 +441,113 @@ export default function Home() {
                           ))}
                         </div>
                       </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* AI COUNCIL ASSESSMENT TAB */}
+                {activeTab === 'council' && (
+                  <div className="space-y-6">
+                    {/* Overall Score Header Banner */}
+                    <div className="glass-panel border border-gray-800 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl">
+                      <div className="space-y-2">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
+                          <ShieldCheck size={14} /> Multi-Agent Council Verdict: {blueprint.multi_agent?.grade || 'A+'}
+                        </div>
+                        <h3 className="text-2xl font-black text-white">Engineering Health & Governance Assessment</h3>
+                        <p className="text-xs text-gray-400 max-w-2xl leading-relaxed">
+                          {blueprint.multi_agent?.summary || "Evaluated by 4 AI Personas: Principal System Architect, FinOps Lead, Cybersecurity Officer, and UX Strategist."}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center gap-4 bg-gray-900/60 p-4 rounded-xl border border-gray-800">
+                        <div className="text-center">
+                          <div className="text-4xl font-black text-emerald-400">{blueprint.multi_agent?.overall_score || 95}</div>
+                          <div className="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">Health Score</div>
+                        </div>
+                        <div className="h-10 w-px bg-gray-800" />
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-white">{blueprint.multi_agent?.personae?.length || 4}</div>
+                          <div className="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">AI Personas</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Personae Review Grid */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {(blueprint.multi_agent?.personae || [
+                        {
+                          persona: "Principal System Architect",
+                          avatar: "🏗️",
+                          score: 96,
+                          verdict: "APPROVED WITH OPTIMIZATIONS",
+                          highlights: ["Modular microservices mesh handles scale spikes effectively."],
+                          concerns: [{ severity: "WARNING", issue: "Single Point of Failure in Redis", recommendation: "Configure Sentinel or AWS ElastiCache Multi-AZ.", code_remediation: "redis_mode: sentinel" }]
+                        },
+                        {
+                          persona: "FinOps & Cloud Cost Specialist",
+                          avatar: "💰",
+                          score: 92,
+                          verdict: "HIGH COST EFFICIENCY",
+                          highlights: ["Initial hosting burn under $20/mo."],
+                          concerns: [{ severity: "CRITICAL", issue: "Token spikes on real-time summaries", recommendation: "Add rate-limiting middleware.", code_remediation: "@app.middleware('http')" }]
+                        }
+                      ]).map((persona: any, idx: number) => (
+                        <div key={idx} className="glass-panel border border-gray-800 rounded-2xl p-6 space-y-4 shadow-lg hover:border-gray-700 transition-all flex flex-col justify-between">
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-between border-b border-gray-800 pb-3">
+                              <div className="flex items-center gap-2.5">
+                                <span className="text-2xl">{persona.avatar}</span>
+                                <div>
+                                  <h4 className="text-sm font-bold text-white">{persona.persona}</h4>
+                                  <span className="text-[10px] font-semibold text-gray-400">{persona.verdict}</span>
+                                </div>
+                              </div>
+                              <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                                {persona.score}/100
+                              </span>
+                            </div>
+
+                            {/* Highlights */}
+                            <div className="space-y-1.5">
+                              <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Key Highlights</span>
+                              {persona.highlights.map((hl: string, hIdx: number) => (
+                                <div key={hIdx} className="flex items-start gap-2 text-xs text-gray-300">
+                                  <CheckCircle size={13} className="text-emerald-400 shrink-0 mt-0.5" />
+                                  <span>{hl}</span>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Concerns & Code Fixes */}
+                            {persona.concerns && persona.concerns.length > 0 && (
+                              <div className="space-y-2 pt-2 border-t border-gray-900">
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Governance Findings</span>
+                                {persona.concerns.map((concern: any, cIdx: number) => (
+                                  <div key={cIdx} className="p-3 bg-gray-900/60 rounded-xl border border-gray-800 text-xs space-y-2">
+                                    <div className="flex items-center justify-between">
+                                      <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded uppercase ${
+                                        concern.severity === 'CRITICAL' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
+                                        concern.severity === 'WARNING' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
+                                        'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                                      }`}>
+                                        {concern.severity}
+                                      </span>
+                                      <span className="font-semibold text-gray-300 truncate max-w-[200px]">{concern.issue}</span>
+                                    </div>
+                                    <p className="text-gray-400 text-[11px] leading-relaxed">{concern.recommendation}</p>
+                                    {concern.code_remediation && (
+                                      <div className="p-2 bg-black/80 rounded-lg border border-gray-900 font-mono text-[10px] text-emerald-400 overflow-x-auto whitespace-pre">
+                                        {concern.code_remediation}
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )}

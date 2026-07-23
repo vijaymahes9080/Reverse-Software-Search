@@ -15,10 +15,11 @@ from app.engines.oss import recommend_oss_alternatives
 from app.engines.innovation import generate_innovations
 from app.engines.startup import generate_startup_specs
 from app.engines.repo_generator import generate_repository_files
+from app.engines.multi_agent_review import run_multi_agent_review
 
 def synthesize_product(prompt: str) -> Dict[str, Any]:
     """
-    Master pipeline executing all 17 sub-engines to synthesize a complete blueprint.
+    Master pipeline executing sub-engines to synthesize a complete blueprint.
     """
     # 1. Intent understanding
     intent = extract_intent(prompt)
@@ -79,6 +80,9 @@ def synthesize_product(prompt: str) -> Dict[str, Any]:
     
     # 15. Repository Files Generation
     files = generate_repository_files(prompt, intent, genomes, apis, db, ui)
+
+    # 16. Multi-Agent Engineering Council Assessment
+    multi_agent = run_multi_agent_review(prompt, intent, architecture, db, apis, deployment, costs)
     
     # Create final compiled result object
     blueprint_id = str(uuid.uuid4())
@@ -103,5 +107,7 @@ def synthesize_product(prompt: str) -> Dict[str, Any]:
         "oss": oss,
         "innovations": innovations,
         "startup": startup,
-        "files": files
+        "files": files,
+        "multi_agent": multi_agent
     }
+

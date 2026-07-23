@@ -27,5 +27,6 @@ class Blueprint(Base):
     innovation_json = Column(Text)     # 30%+ innovations & market gaps
     startup_json = Column(Text)        # GTM, pricing tiers, pitch deck slides, SWOT
     files_json = Column(Text)          # Synthesized file content map for visual repository download
+    multi_agent_json = Column(Text)    # Multi-agent persona review & health score assessment
     
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
