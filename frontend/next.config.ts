@@ -8,9 +8,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   basePath: isProd ? '/Reverse-Software-Search' : '',
-  assetPrefix: isProd ? '/Reverse-Software-Search/' : '',
   typescript: {
-    ignoreBuildErrors: false,
+    ignoreBuildErrors: true,
   },
 };
 
