@@ -1,10 +1,16 @@
+"""
+Intent Extraction Sub-Engine for Reverse Software Search.
+Extracts audience, domain, scale, constraints, and AI requirements from natural language input.
+"""
+
 from typing import Dict, Any, List
 import json
 from app.services.llm_service import call_llm_json
 
 def extract_intent(prompt: str) -> Dict[str, Any]:
     """
-    Extract key software requirements from natural language input.
+    Extract key software requirements and design constraints from a natural language prompt.
+    Returns a structured dictionary representing the core product intent.
     """
     system_prompt = (
         f"Analyze the following software request: '{prompt}'.\n"
@@ -39,45 +45,39 @@ def extract_intent(prompt: str) -> Dict[str, Any]:
         ai_features = ["Automated document summaries", "Contextual code suggestions", "Smart diagram completions"]
         security_level = "Workspace-isolated Role-Based Access Control (RBAC)"
 
-        if "canva" in p or "notion" in p or "github" in p:
-            title = "CanvasFlow OS"
-            tagline = "Collaborative visual canvases integrated with structured documents and codebase pipelines."
-            domain = "Visual Knowledge Workspace"
-            goals = ["Unify design layouts with wiki-documents", "Track developer task flows visually", "Bridge document editors with versioned code pipelines"]
-            audience = ["Product developers", "UI/UX teams", "Technical project leads"]
-        elif "hospital" in p or "discord" in p:
-            title = "MedChord"
-            tagline = "Secure real-time medical staff chat, low-latency audio wards, and patient logs."
-            domain = "Medical Communication Platform"
-            goals = ["Enable low-latency internal clinical triage paging", "Provide HIPAA-compliant staff chat room threads", "Provide integrated doctor dashboard charts"]
-            audience = ["Hospital triage nurses", "Attending physicians", "Clinical administrators"]
-            scale = "Low-latency WebRTC and secure socket streams"
-            constraints = ["Strict HIPAA compatibility", "On-premise offline deployment options"]
-            pricing_model = "Enterprise Seat Licensing"
-            ai_features = ["Patient chart anomaly flagging", "Automated shift notes transcription"]
-            security_level = "HIPAA Compliant encrypted-at-rest RBAC"
-        elif "law" in p or "github" in p:
-            title = "LexForge"
-            tagline = "Version control, branch management, and pull requests for legal contracts and documents."
-            domain = "Legal Workflow IDE"
-            goals = ["Version legal briefs using git-like document nodes", "Review contract changes using visual pull requests", "Automate compliance tracking pipelines"]
-            audience = ["Attorneys", "Compliance teams", "Paralegals"]
-            scale = "Heavy text revision diff indexing and document versioning"
-            constraints = ["SOC 2 compliance", "Immutable audit trails"]
-            pricing_model = "SaaS monthly tiers"
-            ai_features = ["Contract clause anomaly detection", "Automated citation cross-referencing"]
-            security_level = "SOC 2 Type II Audited permissions"
-        elif "local" in p or "offline" in p:
-            title = "LocalDoc"
-            tagline = "An offline-first, peer-to-peer real-time collaborative document studio."
-            domain = "Offline Productivity Studio"
-            goals = ["Ensure 100% offline functionality", "Sync modifications via local P2P networks", "Host files locally with zero external tracking"]
-            audience = ["Privacy researchers", "Remote field workers", "Independent writers"]
-            scale = "Offline CRDT data syncing and local SQLite persistence"
-            constraints = ["Zero internet requirement", "Local network security isolation"]
-            pricing_model = "Free Open Source / Premium Plugin Support"
-            ai_features = ["On-device local LLM summarization"]
-            security_level = "End-to-end local device encryption"
+        if "hospital" in p or "health" in p or "medical" in p:
+            title = "MediCord Health"
+            tagline = "HIPAA-compliant, real-time clinical communication platform."
+            domain = "Healthcare Telemetry & Communication"
+            goals = ["Ensure secure doctor-to-nurse messaging", "Integrate live patient monitors", "Audit log all records"]
+            audience = ["Hospitals", "Clinics", "Emergency medical technicians"]
+            scale = "Sub-100ms message delivery, high availability zero-downtime failover"
+            constraints = ["HIPAA compliance", "Local EHR data residency", "E2E Encryption"]
+            pricing_model = "Per-seat hospital enterprise licensing"
+            ai_features = ["Clinical triage voice transcription", "AI patient risk assessment alerts"]
+            security_level = "HIPAA Compliant & End-to-End Encrypted"
+        elif "lawyer" in p or "legal" in p or "law" in p:
+            title = "JurisGit Engine"
+            tagline = "Version control and collaborative diff engine for legal contracts."
+            domain = "LegalTech Contract Management"
+            goals = ["Track clause-by-clause contract revisions", "Automate redlining", "Manage client permissions"]
+            audience = ["Corporate legal counsel", "Law firms", "Contract managers"]
+            scale = "High-volume PDF text extraction, vector semantic search over case law"
+            constraints = ["Attorney-client privilege isolation", "Immutable audit trails"]
+            pricing_model = "Enterprise monthly tier per firm"
+            ai_features = ["AI clause comparison", "Automated contract liability risk scoring"]
+            security_level = "Bank-grade SOC2 Type II & Single Sign-On (SSO)"
+        elif "offline" in p or "local" in p:
+            title = "LocalNotion Engine"
+            tagline = "Privacy-first, zero-cloud knowledge base operating entirely offline."
+            domain = "Offline-First Knowledge Management"
+            goals = ["Provide local SQLite storage", "Support P2P CRDT sync across local devices", "Instant search"]
+            audience = ["Privacy researchers", "Journalists", "Off-grid engineers"]
+            scale = "Zero external API dependencies, fast local SQLite indexed vector search"
+            constraints = ["No remote cloud dependencies", "Local disk encryption"]
+            pricing_model = "Free Open Source / One-time license"
+            ai_features = ["Local LLM Ollama integration", "Local document summarization"]
+            security_level = "Local AES-256 GCM Storage Encryption"
 
         return {
             "title": title,
