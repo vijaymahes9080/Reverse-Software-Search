@@ -2,7 +2,21 @@
 
 > **Translate natural language product concepts into complete engineering blueprints, capabilities graphs, multi-agent AI reviews, database designs, architecture diagrams, live sandbox execution previews, and download-ready starter repositories.**
 
+![Reverse Software Search Hero Dashboard](docs/images/dashboard_preview.png)
+
 Reverse Software Search (RSS) is a next-generation AI software synthesis platform. By entering natural language prompts (or picking pre-loaded creative concepts like *"ZeroCost AI SaaS Architect"* or *"I want Discord for hospitals"*), RSS reverse-engineers software genetics, synthesizes custom engineering specifications across 18 distinct design dimensions, runs a simulated Multi-Agent Engineering Council review, and outputs a complete, deployable boilerplate package ready for download and sandbox execution.
+
+---
+
+## 🎨 Visual Showcase & Previews
+
+### 1. 🛡️ Multi-Agent Engineering Council Review Board
+![Multi-Agent Engineering Council Assessment Board](docs/images/multi_agent_council.png)
+*Simulated AI Council featuring 4 specialized personas evaluating System Architecture, Cloud Costs, Cybersecurity, and UX Accessibility with automated code remediation snippets.*
+
+### 2. ⚡ Live WebContainer Code Sandbox Execution
+![Live Code Editor & Terminal Execution Sandbox](docs/images/code_sandbox.png)
+*Interactive browser-based sandbox displaying multi-file repository architecture, syntax-highlighted code editor, and live process output logs.*
 
 ---
 
@@ -87,6 +101,12 @@ Reverse Software Search/
 │   ├── requirements.txt           # Python backend dependencies
 │   └── rss.db                     # Local SQLite database storing history
 │
+├── docs/
+│   └── images/                    # UI Visual previews & screenshots
+│       ├── dashboard_preview.png  # Hero RSS dashboard UI
+│       ├── multi_agent_council.png# Multi-Agent Council review board
+│       └── code_sandbox.png       # Live WebContainer code sandbox UI
+│
 ├── frontend/
 │   ├── src/
 │   │   ├── app/                   # Next.js app pages, styles, layout
@@ -144,7 +164,6 @@ Reverse Software Search/
    LITELLM_MODEL=gpt-4o-mini
    MOCK_LLM=True                        # Set to False to enable live LLM synthesis
    ```
-   > 💡 **Mock Mode**: By default, `MOCK_LLM=True` is enabled, allowing you to synthesize blueprints instantly offline for common queries like *"I want Canva + GitHub + Notion"*, *"I want Discord for hospitals"*, *"I want GitHub for lawyers"*, and *"I want Notion but offline"*.
 
 5. Start the FastAPI development server:
    ```bash
